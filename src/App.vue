@@ -1,9 +1,13 @@
 <template>
   <div class="container">
-    <div class="logo">Notes</div>
+    <div class="logo">Notes11111</div>
     <div class="header">header</div>
     <div class="menu">
-      <font-awesome-icon :icon="['fas', 'phone']" title="Tag" />
+      <font-awesome-icon :icon="['fas', 'archive']" size="lg" title="Archive" />
+      <font-awesome-icon :icon="['fas', 'trash']" size="lg" title="Trash" />
+      <font-awesome-icon :icon="['fas', 'archive']" size="lg" title="Archive" />
+      <font-awesome-icon :icon="['fas', 'archive']" size="lg" title="Archive" />
+      <font-awesome-icon :icon="['fas', 'archive']" size="lg" title="Archive" />
     </div>
     <div class="content">
       <Note v-for="note in notes" :note="note" :key="note.title" />
@@ -21,6 +25,7 @@
 
 <script>
 import Note from "./components/Note.vue";
+import { faChessQueen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 export default {
