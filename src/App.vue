@@ -3,16 +3,22 @@
     <div class="logo">Notes</div>
     <div class="header">header</div>
     <div class="menu">
-      <p>Menu 1</p>
-      <p>Menu 2</p>
-      <p>Menu 3</p>
-      <p>Menu 4</p>
-      <p>Menu 5</p>
+      <p>Tags</p>
+      <p>Notes</p>
+      <p>Calendar</p>
+      <p>Archive</p>
+      <p>Trash</p>
     </div>
     <div class="content">
       <Note v-for="note in notes" :note="note" :key="note.title" />
     </div>
-    <div class="subcontent">{{ selectedNote }}</div>
+    <div class="subcontent">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+    </div>
     <div class="footer">footer</div>
   </div>
 </template>
@@ -45,9 +51,11 @@ export default {
 </script>
 
 <style scoped>
+body {
+  background-color: grey;
+}
 body * {
   font-family: sans-serif;
-  color: black;
 }
 
 .container {
@@ -71,7 +79,6 @@ body * {
   padding: 20px;
 }
 .menu {
-  background-color: red;
   grid-column: 1/3;
   grid-row: 3/10;
   padding: 20px;
@@ -83,7 +90,7 @@ body * {
 }
 
 .content {
-  background-color: blueviolet;
+  background-color: grey;
   grid-column: 3/7;
   grid-row: 3/10;
   border-top-left-radius: 10%;
@@ -92,10 +99,12 @@ body * {
   grid-gap: 5px;
 }
 .subcontent {
-  background-color: darkmagenta;
+  background-color: grey;
   grid-column: 7/11;
   grid-row: 3/10;
   border-top-right-radius: 10%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .footer {
