@@ -3,11 +3,7 @@
     <div class="logo">Notes</div>
     <div class="header">header</div>
     <div class="menu">
-      <p>Tags</p>
-      <p>Notes</p>
-      <p>Calendar</p>
-      <p>Archive</p>
-      <p>Trash</p>
+      <font-awesome-icon :icon="['fas', 'phone']" title="Tag" />
     </div>
     <div class="content">
       <Note v-for="note in notes" :note="note" :key="note.title" />
@@ -25,9 +21,11 @@
 
 <script>
 import Note from "./components/Note.vue";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
 export default {
   name: "App",
-  components: { Note },
+  components: { Note, FontAwesomeIcon },
   data() {
     return {
       selectedNote: "abc",
@@ -82,6 +80,9 @@ body * {
   grid-column: 1/3;
   grid-row: 3/10;
   padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-gap: 5px;
 }
 
 .footer {
