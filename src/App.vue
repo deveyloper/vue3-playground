@@ -3,37 +3,44 @@
     <div class="logo">Notes</div>
     <div class="header">header</div>
     <div class="menu">
-      <p>Tags</p>
-      <p>Notes</p>
-      <p>Calendar</p>
-      <p>Archive</p>
-      <p>Trash</p>
+      <div class="menu-wrapper">
+        <div class="menu-item" v-for="menu in menus" :key="menu.title">
+          <img
+            style="width: 1.5em; height: 1.5em; color: white"
+            :src="`${publicPath}assets/${menu.source}.png`"
+          />
+          <span class="menu-text">{{ menu.text }}</span>
+        </div>
+      </div>
     </div>
     <div class="content">
       <Note v-for="note in notes" :note="note" :key="note.title" />
     </div>
-    <div class="subcontent">
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
-      <div>4</div>
-      <div>5</div>
-    </div>
+    <div class="subcontent"></div>
     <div class="footer">footer</div>
   </div>
 </template>
 
 <script>
 import Note from "./components/Note.vue";
+
 export default {
   name: "App",
   components: { Note },
   data() {
     return {
+      publicPath: process.env.BASE_URL,
       selectedNote: "abc",
+      menus: [
+        { text: "Notes", source: "note" },
+        { text: "Tag", source: "tag" },
+        { text: "Documents", source: "document" },
+        { text: "Calendar", source: "calendar" },
+        { text: "Trash", source: "delete" },
+      ],
       notes: [
         {
-          title: "a",
+          title: "How to cook a lamb",
           body: "1",
         },
         {
@@ -60,28 +67,46 @@ body * {
 
 .container {
   display: grid;
-  grid-template: repeat(10, 1fr) / repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(10, 1fr);
   height: 100vh;
 }
 
 .header {
   background-color: yellow;
   grid-column: 3 / -1;
-  grid-row: 1/3;
+  grid-row: 1/2;
   text-align: center;
 }
 .logo {
   grid-column: 1/3;
-  grid-row: 1/3;
+  grid-row: 1/2;
   background-color: chocolate;
   font-size: 2em;
   font-weight: bold;
   padding: 20px;
 }
 .menu {
+  color: white;
+  background-color: #273236;
   grid-column: 1/3;
-  grid-row: 3/10;
+  grid-row: 2/10;
   padding: 20px;
+  display: grid;
+  grid-gap: 5px;
+}
+
+.menu-item {
+  height: 40px;
+}
+
+.menu-text {
+  padding-left: 15px;
+  font-size: 1.5em;
+}
+
+.menu-wrapper {
+  height: 300px;
 }
 
 .footer {
@@ -90,21 +115,25 @@ body * {
 }
 
 .content {
-  background-color: grey;
+  background-color: #ebf4f6;
   grid-column: 3/7;
-  grid-row: 3/10;
+  grid-row: 2/10;
   border-top-left-radius: 10%;
   padding: 20px;
   display: grid;
+  grid-template-columns: 1fr 1fr;
   grid-gap: 5px;
 }
 .subcontent {
-  background-color: grey;
+  background-color: #ebf4f6;
   grid-column: 7/11;
-  grid-row: 3/10;
+  grid-row: 2/10;
   border-top-right-radius: 10%;
   display: grid;
   grid-template-columns: 1fr 1fr;
+}
+
+.menu-item-div {
 }
 
 .footer {
@@ -113,12 +142,39 @@ body * {
 @media screen and (max-width: 1992px) {
   body {
     background-color: darkorange;
+    font-size:20px;
   }
 }
 
 @media screen and (max-width: 700px) {
   body {
     background-color: olive;
+    font-size:16px;
   }
+  
+}
+
+@media screen and (max-width: 1020px) {
+  .menu-text{
+    display: none;
+  }
+  body{
+    font-size: 12px;
+  }
+  .menu, .logo{
+    grid-column: 1/2;
+  }
+  .content{
+    grid-column: 2/7;
+  }
+
+  .header{
+    grid-column: 2/11;
+  }
+
+  .menu-wrapper{
+    text-align: center;
+  }
+  
 }
 </style>
